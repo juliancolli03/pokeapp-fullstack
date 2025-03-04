@@ -65,7 +65,11 @@
 - **dotenv** (para la configuración de variables de entorno)
 - **cors**
 
----
+
+### Testing
+
+**Jest**
+**Supertest**
 
 ## Instalación y Configuración
 
@@ -80,11 +84,42 @@
    npm install
    node server
 
-3. **Clonar el repositorio** y navegar al directorio `frontend`:
+3. **Navegar al directorio `frontend**:
 
    ```bash
    cd frontend
    npm install
    npm run dev
 
+## Pruebas:
+
+La aplicación utiliza Jest y Supertest para realizar pruebas unitarias y de integración del backend. Los tests cubren varios aspectos de la API de Pokémon:
+**Tipos de Pruebas**
+Búsqueda de Pokémon
+Validación de parámetros de búsqueda
+Filtrado de resultados
+Manejo de errores
+Detalles de Pokémon
+Obtención de detalles de Pokémon válidos
+Manejo de Pokémon inexistentes
+Gestión de Favoritos
+Agregar Pokémon a favoritos
+Prevenir duplicados
+Listar favoritos
+Eliminar favoritos
+
+**Características de los Tests**
+Mocking: Se utilizan mocks para simular:
+Middleware de autenticación
+Llamadas a PokeAPI
+Operaciones de base de datos con Mongoose
+Cobertura de Casos de Uso
+Escenarios exitosos
+Validación de errores
+Manejo de casos límite
+
+**Ejecutar Pruebas**
+
+cd backend
+npm test
       
