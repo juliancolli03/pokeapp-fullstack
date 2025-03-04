@@ -12,9 +12,6 @@
 - [Instalación y Configuración](#instalación-y-configuración)
   - [Backend](#backend)
   - [Frontend](#frontend)
-- [Uso y Ejecución](#uso-y-ejecución)
-- [Testing Rápido](#testing-rápido)
-- [Licencia](#licencia)
 
 ---
 
