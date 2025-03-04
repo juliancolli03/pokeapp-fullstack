@@ -94,32 +94,53 @@
 ## Pruebas:
 
 La aplicación utiliza Jest y Supertest para realizar pruebas unitarias y de integración del backend. Los tests cubren varios aspectos de la API de Pokémon:
+
 **Tipos de Pruebas**
+
 Búsqueda de Pokémon
+
 Validación de parámetros de búsqueda
+
 Filtrado de resultados
+
 Manejo de errores
+
 Detalles de Pokémon
+
 Obtención de detalles de Pokémon válidos
+
 Manejo de Pokémon inexistentes
+
 Gestión de Favoritos
+
 Agregar Pokémon a favoritos
+
 Prevenir duplicados
+
 Listar favoritos
+
 Eliminar favoritos
 
 **Características de los Tests**
+
 Mocking: Se utilizan mocks para simular:
+
 Middleware de autenticación
+
 Llamadas a PokeAPI
+
 Operaciones de base de datos con Mongoose
+
 Cobertura de Casos de Uso
+
 Escenarios exitosos
+
 Validación de errores
+
 Manejo de casos límite
 
 **Ejecutar Pruebas**
-
+   ```bash
 cd backend
 npm test
       
