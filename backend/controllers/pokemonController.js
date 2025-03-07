@@ -2,21 +2,54 @@ const axios = require('axios');
 const FavoritePokemon = require('../models/FavoritePokemon');
 const dotenv = require('dotenv');
 
-dotenv.config()
+dotenv.config();
 const POKE_API_URL = process.env.POKE_API_URL;
+
+const fetchAllPokemon = async () => {
+  try {
+
+    const firstResponse = await axios.get(POKE_API_URL);
+    const { count, results: firstResults } = firstResponse.data;
+    const pageSize = firstResults.length;
+    const totalPages = Math.ceil(count / pageSize);
+
+
+    if (totalPages === 1) return firstResults;
+
+    const requests = [];
+    for (let i = 1; i < totalPages; i++) {
+      const offset = i * pageSize;
+      requests.push(axios.get(`${POKE_API_URL}?offset=${offset}&limit=${pageSize}`));
+    }
+
+    const responses = await Promise.all(requests);
+    let allPokemon = firstResults;
+    responses.forEach(response => {
+      allPokemon = allPokemon.concat(response.data.results);
+    });
+
+    return allPokemon;
+  } catch (error) {
+    console.error("Error al obtener la lista de Pokémon:", error);
+    throw new Error("No se pudo recuperar la lista de Pokémon.");
+  }
+};
+
+
+
 
 exports.searchPokemon = async (req, res) => {
   try {
     const { query, page = 1, limit = 10 } = req.query;
+
     if (!query) {
       return res.status(400).json({ message: 'Se requiere un término de búsqueda' });
     }
 
-    const response = await axios.get(POKE_API_URL);
-    const allPokemon = response.data.results;
+    const allPokemon = await fetchAllPokemon(); 
 
-    const filteredPokemon = allPokemon.filter((pokemon) =>
-      pokemon.name.includes(query.toLowerCase())
+    const filteredPokemon = allPokemon.filter(pokemon =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase())
     );
 
     const startIndex = (page - 1) * limit;
